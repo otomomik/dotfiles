@@ -1,10 +1,6 @@
 # setup
 
-Ubuntu を初回起動時のみ実行する
-以下の環境が適用される
-
-- tmux
-- fish
+Node.js などの様々な環境がインストールされる
 
 ```
 bash setup.sh
@@ -18,20 +14,3 @@ bash setup.sh
 bash link.sh
 ```
 
-# vscode
-
-## plugin install
-
-プラグインのインストールを実行する
-
-```
-bash vscode-plugin-install.sh
-```
-
-## plugin export
-
-プラグインのエクスポートを実行する
-
-```
-bash vscode-plugin-export.sh
-```
