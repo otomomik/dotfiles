@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# 起動方法
-# bash setup.sh
-
+cd bin
 for file in .??*; do
   [ "$file" = ".git" ] && continue
+  [ "$file" = ".DS_Store" ] && continue
   # ファイルのシンボリックリンクを貼る
   ln -snfv "$PWD/$file" ~/
 done
@@ -32,3 +31,4 @@ for dir in config/*; do
   done
 done
 
+mkdir -p ~/.config/fish/completions && ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions
