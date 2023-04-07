@@ -74,15 +74,17 @@ if not test -e ~/.config/fish/fisher/install.fish
   echo "fisher install"
   mkdir ~/.config/fish/fisher
   curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish > ~/.config/fish/fisher/install.fish
-  fish ~/.config/fish/fisher/install.fish
+  source ~/.config/fish/fisher/install.fish
 end
 if not test -e ~/.config/fish/fisher/jorgebucaran-fisher
-  touch ~/.config/fish/fisher/jorgebucaran-fisher
+  source ~/.config/fish/fisher/install.fish
   fisher install jorgebucaran/fisher
+  touch ~/.config/fish/fisher/jorgebucaran-fisher
 end
 if not test -e ~/.config/fish/fisher/oh-my-fish-theme-bobthefish
-  touch ~/.config/fish/fisher/oh-my-fish-theme-bobthefish
+  source ~/.config/fish/fisher/install.fish
   fisher install oh-my-fish/theme-bobthefish
+  touch ~/.config/fish/fisher/oh-my-fish-theme-bobthefish
 end
 
 cd ~
