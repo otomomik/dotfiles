@@ -7,6 +7,13 @@
 if [ "$(uname)" == 'Darwin' ]; then
   echo 'MacOS'
 
+  # xcode-selectのインストール
+  xcode-select --install
+
+  # homebrewのインストール
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
   # fishのインストール
   brew install fish
 
@@ -15,6 +22,14 @@ if [ "$(uname)" == 'Darwin' ]; then
 
   # yarnに必要なライブラリのインストール
   brew install gpg
+
+  # denoに必要なライブラリのインストール
+  brew install gpg unzip
+
+  # rubyに必要なライブラリのインストール
+  brew install openssl@1.1 readline libyaml gmp
+  brew install openssl@3 readline libyaml gmp
+  brew install bison openssl@3 readline libyaml gmp
 
   # phpに必要なライブラリのインストール
   brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl@1.1 pkg-config re2c zlib libsodium wget oniguruma
@@ -45,8 +60,11 @@ if [ "$(uname)" == 'Darwin' ]; then
   defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
 elif [ "$(uname)" == 'Linux' ]; then
   echo 'Linux'
+
+  read -sp "password:" password
+
   # aptのアップデート
-  sudo -S apt-get -y update
+  echo "${password}" | sudo -S apt-get -y update
   sudo apt-get -y upgrade
   
   # fishのインストール
@@ -54,13 +72,19 @@ elif [ "$(uname)" == 'Linux' ]; then
   
   # nodejsに必要なライブラリのインストール
   sudo apt -y install dirmngr gpg curl gawk
-  
+
+  # denoに必要なライブラリのインストール
+  sudo apt -y install zip unzip
+
+  # rubyに必要なライブラリのインストール
+  sudo apt -y install autoconf bison patch build-essential rustc libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libgmp-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev uuid-dev
+
   # rustに必要なライブラリのインストール
   sudo apt -y install libwebkit2gtk-4.0-dev build-essential curl wget libssl-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
   
   # phpに必要なライブラリのインストール
   sudo apt-get -y update
-  sudo apt-get install -y autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
+  sudo apt-get -y install autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
   
   # dockerのインストール
   sudo apt -y update
@@ -90,7 +114,7 @@ elif [ "$(uname)" == 'Linux' ]; then
   curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
   && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-  && sudo apt update \
+  && sudo apt -y update \
   && sudo apt install gh -y
 
   # neovimのインストール
@@ -126,7 +150,6 @@ elif [ "$(uname)" == 'Linux' ]; then
     # LinuxのCommandLineToolsのインストール
     # 最新版は https://developer.android.com/studio#command-tools から確認できる。
     cd ~
-    sudo apt -y install unzip
     wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
     unzip commandlinetools-linux-* -d Android
     rm -rf commandlinetools-linux-*
