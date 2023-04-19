@@ -54,9 +54,6 @@ return packer.startup(function(use)
   use("neovim/nvim-lspconfig")
   use({
     "williamboman/mason.nvim",
-    config = function()
-      require("mason").setup({})
-    end,
   })
   use({
     "williamboman/mason-lspconfig.nvim",
@@ -128,26 +125,12 @@ return packer.startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim" },
+    after = {
+      "mason"
+    },
     config = function()
-      local status, null_ls = pcall(require, "null-ls")
-      if not status then
-        return
-      end
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.eslint.with({
-            prefer_local = "node_modules/.bin",
-          }),
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.tidy,
-          null_ls.builtins.diagnostics.stylelint,
-          null_ls.builtins.formatting.fish_indent,
-          null_ls.builtins.formatting.shellharden,
-        },
-        debug = false,
-      })
-    end,
+      require("custom.plugins.null-ls")
+    end
   })
   use({
     "norcalli/nvim-colorizer.lua",
