@@ -36,14 +36,12 @@ packer.init({
 
 return packer.startup(function(use)
   use("wbthomason/packer.nvim")
+
+  -- theme
   use("cocopon/iceberg.vim")
+
+  -- file
   use({ "ibhagwan/fzf-lua", requires = { "nvim-tree/nvim-web-devicons" } })
-  use({
-    "ojroques/nvim-hardline",
-    config = function()
-      require("hardline").setup({})
-    end,
-  })
   use({
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -51,87 +49,55 @@ return packer.startup(function(use)
     end,
   })
   use("lambdalisue/fern.vim")
-  use("neovim/nvim-lspconfig")
-  use({
-    "williamboman/mason.nvim",
-  })
-  use({
-    "williamboman/mason-lspconfig.nvim",
-    config = function()
-      local opt = {
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      }
-      require("mason-lspconfig").setup_handlers({
-        function(server)
-          require("lspconfig")[server].setup(opt)
-        end,
-      })
-    end,
-  })
-  use({
-    "hrsh7th/nvim-cmp",
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-          end,
-        },
-        sources = {
-          { name = "nvim_lsp" },
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-k>"] = cmp.mapping.select_prev_item(),
-          ["<C-j>"] = cmp.mapping.select_next_item(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        }),
-        experimental = {
-          ghost_text = true,
-        },
-      })
-      cmp.setup.filetype("gitcommit", {
-        sources = cmp.config.sources({
-          { name = "cmp_git" },
-        }, {
-          { name = "buffer" },
-        }),
-      })
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = "buffer" },
-        },
-      })
-      cmp.setup.cmdline(":", {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = "path" },
-        }, {
-          { name = "cmdline" },
-        }),
-      })
-    end,
-  })
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/cmp-cmdline")
-  use("hrsh7th/vim-vsnip")
   use("lambdalisue/fern-git-status.vim")
   use("lambdalisue/fern-renderer-devicons.vim")
   use("lambdalisue/fern-renderer-nerdfont.vim")
   use("ryanoasis/vim-devicons")
   use("lambdalisue/nerdfont.vim")
+
+  -- lsp
+  use("neovim/nvim-lspconfig")
   use({
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    after = {
-      "mason"
-    },
+    "williamboman/mason.nvim",
     config = function()
-      require("custom.plugins.null-ls")
+      require("mason").setup()
     end
   })
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      local nvim_lsp = require('lspconfig')
+      local mason_lspconfig = require('mason-lspconfig')
+      mason_lspconfig.setup_handlers({ 
+        function(server_name)
+          local opts = {}
+          opts.on_attach = function(_, bufnr)
+            local bufopts = { silent = true, buffer = bufnr }
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+            vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+            vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set("n", "gn", vim.lsp.buf.rename, bufopts)
+            vim.keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set("n", "gf", vim.lsp.buf.format, bufopts)
+          end
+          nvim_lsp[server_name].setup(opts)
+        end
+      })
+    end
+  })
+
+  -- terminal
+  use({
+    "akinsho/toggleterm.nvim",
+    tag = '*',
+    config = function()
+      require("toggleterm").setup()
+    end
+  })
+
+  -- other
   use({
     "norcalli/nvim-colorizer.lua",
     config = function()

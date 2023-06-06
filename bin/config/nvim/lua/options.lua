@@ -1,7 +1,7 @@
 local options = {
   encoding = "utf-8",
   fileencoding = "utf-8",
-  shell = "fish",
+  shell = "zsh",
   expandtab = true,
   shiftwidth = 2,
   tabstop = 2,
