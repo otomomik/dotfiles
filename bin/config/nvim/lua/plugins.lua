@@ -55,6 +55,15 @@ return packer.startup(function(use)
   use("ryanoasis/vim-devicons")
   use("lambdalisue/nerdfont.vim")
 
+  -- comp
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-buffer')
+  use('hrsh7th/cmp-path')
+  use('hrsh7th/cmp-cmdline')
+  use('hrsh7th/nvim-cmp')
+  use('hrsh7th/cmp-vsnip')
+  use('hrsh7th/vim-vsnip')
+
   -- lsp
   use("neovim/nvim-lspconfig")
   use({
@@ -68,9 +77,59 @@ return packer.startup(function(use)
     config = function()
       local nvim_lsp = require('lspconfig')
       local mason_lspconfig = require('mason-lspconfig')
-      mason_lspconfig.setup_handlers({ 
+      local cmp = require('cmp')
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+          end,
+        },
+        window = {
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-k>"] = cmp.mapping.select_prev_item(),
+          ["<C-j>"] = cmp.mapping.select_next_item(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'vsnip' },
+        }, {
+          { name = 'buffer' },
+        })
+      })
+
+      cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources({
+          { name = 'git' },
+        }, {
+          { name = 'buffer' },
+        })
+      })
+
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+          { name = 'cmdline' }
+        })
+      })
+
+      mason_lspconfig.setup_handlers({
         function(server_name)
-          local opts = {}
+          local opts = {
+            capabilities = capabilities
+          }
           opts.on_attach = function(_, bufnr)
             local bufopts = { silent = true, buffer = bufnr }
             vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
