@@ -14,9 +14,6 @@ if [ "$(uname)" == 'Darwin' ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
-  # fishのインストール
-  brew install fish
-
   # asdfのインストール
   brew install coreutils curl git
 
@@ -41,23 +38,19 @@ if [ "$(uname)" == 'Darwin' ]; then
   brew install gh
 
   # neovimのインストール
-  brew install fzf fd ripgrep
+  brew install fd ripgrep
   brew tap homebrew/cask-fonts
   brew install font-hack-nerd-font
 
   # actのインストール
   brew install act
 
-  # minioのインストール
-  cd ~
-  mkdir minio
-  cd ./minio
-  mkdir data
-  brew install minio/stable/minio
-
   # VSCodeの設定
-  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-  defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false
+  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
+  defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
+  defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false         # For VS Codium
+  defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
+  defaults delete -g ApplePressAndHoldEnabled                                           # If necessary, reset global default
 elif [ "$(uname)" == 'Linux' ]; then
   echo 'Linux'
 
@@ -66,9 +59,9 @@ elif [ "$(uname)" == 'Linux' ]; then
   # aptのアップデート
   echo "${password}" | sudo -S apt-get -y update
   sudo apt-get -y upgrade
-  
-  # fishのインストール
-  sudo apt -y install fish
+
+  # zshのインストール
+  sudo apt -y install zsh
   
   # nodejsに必要なライブラリのインストール
   sudo apt -y install dirmngr gpg curl gawk
@@ -119,23 +112,13 @@ elif [ "$(uname)" == 'Linux' ]; then
 
   # neovimのインストール
   # Nerd Fontをインストールする
-  #   https://www.nerdfonts.com/font-downloads
+  # https://www.nerdfonts.com/font-downloads
   explorer.exe https://www.nerdfonts.com/font-downloads
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  yes | ~/.fzf/install
   sudo apt -y install fd-find ripgrep
 
   # actのインストール
   cd ~
   sudo curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash  
-
-  # minioのインストール
-  cd ~
-  mkdir minio
-  cd ./minio
-  mkdir data
-  wget https://dl.min.io/server/minio/release/linux-amd64/minio
-  chmod +x minio
 
   # WSL 用の調整
   if [[ "$(uname -r)" == *microsoft* ]]; then
@@ -172,6 +155,10 @@ else
   exit
 fi
 
+# fzfのインストール
+git clone https://github.com/junegunn/fzf.git ~/.fzf
+yes | ~/.fzf/install
+
 # asdfのインストール
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
 . "$HOME"/.asdf/asdf.sh
@@ -190,6 +177,11 @@ asdf global deno latest
 asdf plugin add yarn
 asdf install yarn latest
 asdf global yarn latest
+
+# pnpmのインストール
+asdf plugin add pnpm
+asdf install pnpm latest
+asdf global pnpm latest
 
 # rustのインストール
 asdf plugin add rust
@@ -227,4 +219,4 @@ mkdir workspace
 
 # shellの変更
 sudo sh -c "echo $(which fish) >> /etc/shells"
-chsh -s $(which fish)
+chsh -s $(which zsh)

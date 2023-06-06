@@ -30,5 +30,3 @@ for dir in config/*; do
     echo $file
   done
 done
-
-mkdir -p ~/.config/fish/completions && ln -s ~/.asdf/completions/asdf.fish ~/.config/fish/completions

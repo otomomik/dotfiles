@@ -5,3 +5,6 @@ init:
 
 link:
 	bash ./bin/link.sh
+
+zsh:
+	bash ./bin/zsh.sh
