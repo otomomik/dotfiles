@@ -23,6 +23,13 @@ config.keys = {
       domain = 'CurrentPaneDomain'
     },
   },
+  {
+    key = '=',
+    mods = 'CTRL|SHIFT|ALT',
+    action = wezterm.action.SplitVertical {
+      domain = 'CurrentPaneDomain'
+    },
+  },
 }
 
 
