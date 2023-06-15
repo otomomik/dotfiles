@@ -140,6 +140,8 @@ return packer.startup(function(use)
             vim.keymap.set("n", "gn", vim.lsp.buf.rename, bufopts)
             vim.keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
             vim.keymap.set("n", "gf", vim.lsp.buf.format, bufopts)
+            vim.keymap.set("n", "<Leader>gp", vim.diagnostic.goto_prev, bufopts)
+            vim.keymap.set("n", "<Leader>gn", vim.diagnostic.goto_next, bufopts)
           end
           nvim_lsp[server_name].setup(opts)
         end

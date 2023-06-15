@@ -17,6 +17,9 @@ if [ "$(uname)" == 'Darwin' ]; then
   # asdfのインストール
   brew install coreutils curl git
 
+  # tmuxのインストール
+  brew install tmux
+
   # yarnに必要なライブラリのインストール
   brew install gpg
 
@@ -59,6 +62,9 @@ elif [ "$(uname)" == 'Linux' ]; then
   # aptのアップデート
   echo "${password}" | sudo -S apt-get -y update
   sudo apt-get -y upgrade
+
+  # tmuxのインストール
+  sudo apt -y install tmux
 
   # zshのインストール
   sudo apt -y install zsh
@@ -216,6 +222,10 @@ asdf global neovim stable
 # workspaceの作成
 cd ~
 mkdir workspace
+
+# tmuxの作成
+cd ~
+mkdir .tmux
 
 # shellの変更
 sudo sh -c "echo $(which fish) >> /etc/shells"

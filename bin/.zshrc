@@ -1,9 +1,10 @@
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="agnoster"
+ZSH_THEME=agnoster
 plugins=(
     git
     zsh-autosuggestions
+    zsh-vi-mode
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -54,3 +55,4 @@ export PIPENV_VENV_IN_PROJECT=true
 
 # workspace
 alias ws='cd ~/workspace'
+
