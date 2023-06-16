@@ -183,6 +183,15 @@ return packer.startup(function(use)
 
   -- other
   use({
+    "phaazon/hop.nvim",
+    branch = "v2",
+    config = function()
+      local hop = require("hop")
+      hop.setup()
+      vim.keymap.set("n", "<Leader>/", hop.hint_patterns)
+    end,
+  })
+  use({
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
