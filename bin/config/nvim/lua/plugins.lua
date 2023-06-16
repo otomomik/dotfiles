@@ -56,13 +56,13 @@ return packer.startup(function(use)
   use("lambdalisue/nerdfont.vim")
 
   -- comp
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-buffer')
-  use('hrsh7th/cmp-path')
-  use('hrsh7th/cmp-cmdline')
-  use('hrsh7th/nvim-cmp')
-  use('hrsh7th/cmp-vsnip')
-  use('hrsh7th/vim-vsnip')
+  use("hrsh7th/cmp-nvim-lsp")
+  use("hrsh7th/cmp-buffer")
+  use("hrsh7th/cmp-path")
+  use("hrsh7th/cmp-cmdline")
+  use("hrsh7th/nvim-cmp")
+  use("hrsh7th/cmp-vsnip")
+  use("hrsh7th/vim-vsnip")
 
   -- lsp
   use("neovim/nvim-lspconfig")
@@ -70,15 +70,15 @@ return packer.startup(function(use)
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
-    end
+    end,
   })
   use({
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      local nvim_lsp = require('lspconfig')
-      local mason_lspconfig = require('mason-lspconfig')
-      local cmp = require('cmp')
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local nvim_lsp = require("lspconfig")
+      local mason_lspconfig = require("mason-lspconfig")
+      local cmp = require("cmp")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       cmp.setup({
         snippet = {
@@ -86,49 +86,48 @@ return packer.startup(function(use)
             vim.fn["vsnip#anonymous"](args.body)
           end,
         },
-        window = {
-        },
+        window = {},
         mapping = cmp.mapping.preset.insert({
           ["<C-k>"] = cmp.mapping.select_prev_item(),
           ["<C-j>"] = cmp.mapping.select_next_item(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'vsnip' },
+          { name = "nvim_lsp" },
+          { name = "vsnip" },
         }, {
-          { name = 'buffer' },
-        })
+          { name = "buffer" },
+        }),
       })
 
-      cmp.setup.filetype('gitcommit', {
+      cmp.setup.filetype("gitcommit", {
         sources = cmp.config.sources({
-          { name = 'git' },
+          { name = "git" },
         }, {
-          { name = 'buffer' },
-        })
+          { name = "buffer" },
+        }),
       })
 
-      cmp.setup.cmdline({ '/', '?' }, {
+      cmp.setup.cmdline({ "/", "?" }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = 'buffer' }
-        }
+          { name = "buffer" },
+        },
       })
 
-      cmp.setup.cmdline(':', {
+      cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
-          { name = 'path' }
+          { name = "path" },
         }, {
-          { name = 'cmdline' }
-        })
+          { name = "cmdline" },
+        }),
       })
 
       mason_lspconfig.setup_handlers({
         function(server_name)
           local opts = {
-            capabilities = capabilities
+            capabilities = capabilities,
           }
           opts.on_attach = function(_, bufnr)
             local bufopts = { silent = true, buffer = bufnr }
@@ -144,18 +143,42 @@ return packer.startup(function(use)
             vim.keymap.set("n", "<Leader>gn", vim.diagnostic.goto_next, bufopts)
           end
           nvim_lsp[server_name].setup(opts)
-        end
+        end,
       })
-    end
+    end,
+  })
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.beautysh,
+        },
+      })
+    end,
+  })
+  use({
+    "jay-babu/mason-null-ls.nvim",
+    config = function()
+      require("mason-null-ls").setup({
+        automatic_setup = true,
+      })
+    end,
   })
 
   -- terminal
   use({
     "akinsho/toggleterm.nvim",
-    tag = '*',
+    tag = "*",
     config = function()
       require("toggleterm").setup()
-    end
+    end,
   })
 
   -- other

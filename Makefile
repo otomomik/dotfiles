@@ -12,4 +12,4 @@ tmux:
 zsh:
 	bash ./bin/zsh.sh
 
-other: tmux zsh
+chore: tmux zsh
