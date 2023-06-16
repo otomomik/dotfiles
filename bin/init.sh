@@ -33,6 +33,9 @@ if [ "$(uname)" == 'Darwin' ]; then
 
   # phpに必要なライブラリのインストール
   brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip openssl@1.1 pkg-config re2c zlib libsodium wget oniguruma
+  
+  # goに必要なライブラリのインストール
+  brew install coreutils
 
   # dockerのインストール
   brew install --cask docker
@@ -85,6 +88,9 @@ elif [ "$(uname)" == 'Linux' ]; then
   sudo apt-get -y update
   sudo apt-get -y install autoconf bison build-essential curl gettext git libgd-dev libcurl4-openssl-dev libedit-dev libicu-dev libjpeg-dev libmysqlclient-dev libonig-dev libpng-dev libpq-dev libreadline-dev libsqlite3-dev libssl-dev libxml2-dev libzip-dev openssl pkg-config re2c zlib1g-dev
   
+  # goに必要なライブラリのインストール
+  sudo apt -y install coreutils curl
+
   # dockerのインストール
   sudo apt -y update
   sudo apt -y install \
@@ -213,6 +219,17 @@ pip install pipenv
 asdf plugin add php
 asdf install php latest
 asdf global php latest
+
+# goのインストール
+asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+asdf install golang latest
+asdf global golang latest
+
+# lazygitのインストール
+cd ~
+git clone https://github.com/jesseduffield/lazygit.git
+cd lazygit
+go install
 
 # neovimのインストール
 asdf plugin add neovim

@@ -44,7 +44,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 # act
-export PATH="$PATH:$HOME/bin"
+export PATH=$PATH:$HOME/bin
 
 # bundle
 alias bundle-install="bundle install --path vendor/bundle"
@@ -52,6 +52,11 @@ alias bundle-exec="bundle exec"
 
 # pipenv
 export PIPENV_VENV_IN_PROJECT=true
+
+# go
+source ~/.asdf/plugins/golang/set-env.zsh
+export GOPATH="$(go env GOPATH)"
+export PATH=$PATH:$GOPATH/bin
 
 # workspace
 alias ws='cd ~/workspace'
