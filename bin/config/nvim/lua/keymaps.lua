@@ -2,9 +2,9 @@
 vim.g.mapleader = ","
 
 -- Buffer
-vim.keymap.set("n", "<C-j>", "<Cmd>bprevious<CR>")
-vim.keymap.set("n", "<C-k>", "<cmd>bnext<CR>")
-vim.keymap.set("n", "<C-p>", "<cmd>BufferLinePick<CR>")
+vim.keymap.set("n", "<C-p>", "<Cmd>bprevious<CR>")
+vim.keymap.set("n", "<C-n>", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<C-l>", "<cmd>BufferLinePick<CR>")
 vim.keymap.set("n", "q", "<cmd>bd<CR>")
 
 -- Fern
