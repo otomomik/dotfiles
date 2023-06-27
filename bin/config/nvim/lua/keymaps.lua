@@ -1,7 +1,7 @@
 -- Global
 vim.g.mapleader = ","
 
--- Tab
+-- Buffer
 vim.keymap.set("n", "<C-j>", "<Cmd>bprevious<CR>")
 vim.keymap.set("n", "<C-k>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<C-p>", "<cmd>BufferLinePick<CR>")
@@ -14,6 +14,7 @@ vim.keymap.set("n", "ft", "<cmd>Fern . -drawer -toggle<CR>")
 vim.keymap.set("n", "ff", "<cmd>FzfLua files<CR>")
 vim.keymap.set("n", "fw", "<cmd>FzfLua grep<CR>")
 vim.keymap.set("n", "fs", "<cmd>FzfLua git_status<CR>")
+vim.keymap.set("n", "fb", "<cmd>FzfLua buffers<CR>")
 
 -- Terminal
 local Terminal = require("toggleterm.terminal").Terminal
