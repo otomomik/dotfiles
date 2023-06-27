@@ -1,7 +1,14 @@
 -- Global
 vim.g.mapleader = ","
+
+-- Tab
+vim.keymap.set("n", "<C-j>", "<Cmd>bprevious<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>bnext<CR>")
+vim.keymap.set("n", "<C-p>", "<cmd>BufferLinePick<CR>")
+vim.keymap.set("n", "q", "<cmd>bd<CR>")
+
 -- Fern
-vim.keymap.set("n", "<Leader>n", "<cmd>Fern . -drawer<CR>")
+vim.keymap.set("n", "ft", "<cmd>Fern . -drawer -toggle<CR>")
 
 -- Fzf
 vim.keymap.set("n", "ff", "<cmd>FzfLua files<CR>")

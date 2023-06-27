@@ -41,7 +41,31 @@ return packer.startup(function(use)
   use("cocopon/iceberg.vim")
 
   -- file
-  use({ "ibhagwan/fzf-lua", requires = { "nvim-tree/nvim-web-devicons" } })
+  use({
+    "ibhagwan/fzf-lua",
+    requires = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("fzf-lua").setup({
+        files = {
+          actions = {
+            ["default"] = require("fzf-lua.actions").file_edit,
+          },
+        },
+        grep = {
+          actions = {
+            ["default"] = require("fzf-lua.actions").file_edit,
+          },
+        },
+        git = {
+          status = {
+            actions = {
+              ["default"] = require("fzf-lua.actions").file_edit,
+            },
+          },
+        },
+      })
+    end,
+  })
   use({
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -138,8 +162,9 @@ return packer.startup(function(use)
             vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, bufopts)
             vim.keymap.set("n", "gn", vim.lsp.buf.rename, bufopts)
             vim.keymap.set("n", "ga", vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set("n", "ge", vim.diagnostic.open_float, bufopts)
             vim.keymap.set("n", "gf", vim.lsp.buf.format, bufopts)
-            vim.keymap.set("n", "<Leader>gp", vim.diagnostic.goto_prev, bufopts)
+            vim.keymap.set("n", "<Leader>gN", vim.diagnostic.goto_prev, bufopts)
             vim.keymap.set("n", "<Leader>gn", vim.diagnostic.goto_next, bufopts)
           end
           nvim_lsp[server_name].setup(opts)
@@ -178,6 +203,19 @@ return packer.startup(function(use)
     tag = "*",
     config = function()
       require("toggleterm").setup()
+    end,
+  })
+
+  -- tab
+  use({
+    "akinsho/bufferline.nvim",
+    tag = "*",
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+        },
+      })
     end,
   })
 
