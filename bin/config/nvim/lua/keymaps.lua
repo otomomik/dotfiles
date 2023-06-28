@@ -2,7 +2,7 @@
 vim.g.mapleader = ","
 
 -- Buffer
-vim.keymap.set("n", "<C-p>", "<Cmd>bprevious<CR>")
+vim.keymap.set("n", "<C-S-n>", "<Cmd>bprevious<CR>")
 vim.keymap.set("n", "<C-n>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLinePick<CR>")
 vim.keymap.set("n", "q", "<cmd>bd<CR>")
@@ -12,7 +12,7 @@ vim.keymap.set("n", "ft", "<cmd>Fern . -drawer -toggle<CR>")
 
 -- Fzf
 vim.keymap.set("n", "ff", "<cmd>FzfLua files<CR>")
-vim.keymap.set("n", "fw", "<cmd>FzfLua grep<CR>")
+vim.keymap.set("n", "fw", "<cmd>FzfLua live_grep<CR>")
 vim.keymap.set("n", "fs", "<cmd>FzfLua git_status<CR>")
 vim.keymap.set("n", "fb", "<cmd>FzfLua buffers<CR>")
 
