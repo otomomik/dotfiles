@@ -3,6 +3,7 @@
 ln -snfv ~/dotfiles/.zshrc ~/
 ln -snfv ~/dotfiles/.tmux.conf ~/
 
+ln -snfv ~/dotfiles/tmux ~/.tmux
 ln -snfv ~/dotfiles/vsnip ~/.vsnip
 
 if [ ! -d "$HOME/.config" ]; then
