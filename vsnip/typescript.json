@@ -1,10 +1,38 @@
 {
+  "Function": {
+    "prefix": "s_function",
+    "body": [
+      "function $1() {",
+      "  return;",
+      "}"
+    ]
+  },
   "ArrowFunction": {
-    "prefix": "arrow_function",
-    "body": ["const $1 = () => {", "  return;", "}"]
+    "prefix": "s_arrow_function",
+    "body": [
+      "const $1 = () => {",
+      "  return;",
+      "}"
+    ]
+  },
+  "Describe": {
+    "prefix": "s_describe",
+    "body": [
+      "describe('$1', () => {",
+      "  ",
+      "});"
+    ]
+  },
+  "It": {
+    "prefix": "s_it",
+    "body": [
+      "it('$1', () => {",
+      "  ",
+      "});"
+    ]
   },
   "ReactFC": {
-    "prefix": "react_fc",
+    "prefix": "s_react_fc",
     "body": [
       "import type { FC } from 'react';",
       "",
@@ -16,7 +44,7 @@
     ]
   },
   "SolidComponent": {
-    "prefix": "solid_component",
+    "prefix": "s_solid_component",
     "body": [
       "import type { Component } from 'solid-js';",
       "",
