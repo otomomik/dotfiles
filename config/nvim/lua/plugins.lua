@@ -63,6 +63,11 @@ return packer.startup(function(use)
             },
           },
         },
+        lsp = {
+          actions = {
+            ["default"] = require("fzf-lua.actions").file_edit,
+          },
+        },
       })
     end,
   })
