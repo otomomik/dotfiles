@@ -277,6 +277,34 @@ return packer.startup(function(use)
       })
     end,
   })
+  use({
+    "uga-rosa/translate.nvim",
+    config = function()
+      require("translate").setup({
+        default = {
+          output = "floating",
+        },
+        preset = {
+          output = {
+            floating = {
+              width = 0,
+              height = 0,
+              border = {
+                { "",  "NormalFloat" },
+                { "",  "NormalFloat" },
+                { "",  "NormalFloat" },
+                { " ", "NormalFloat" },
+                { "",  "NormalFloat" },
+                { "",  "NormalFloat" },
+                { "",  "NormalFloat" },
+                { " ", "NormalFloat" },
+              },
+            },
+          },
+        },
+      })
+    end,
+  })
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

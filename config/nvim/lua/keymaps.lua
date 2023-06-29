@@ -44,3 +44,7 @@ vim.keymap.set("n", "<Leader>l", "<cmd>wincmd l<CR>")
 local hop = require("hop")
 
 vim.keymap.set("n", "<Leader>/", hop.hint_patterns)
+
+-- other
+vim.keymap.set("v", "tj", "<cmd>:Translate ja<CR>")
+vim.keymap.set("v", "te", "<cmd>:Translate en<CR>")
