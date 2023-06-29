@@ -1,0 +1,30 @@
+{
+  "ArrowFunction": {
+    "prefix": "arrow_function",
+    "body": ["const $1 = () => {", "  return;", "}"]
+  },
+  "ReactFC": {
+    "prefix": "react_fc",
+    "body": [
+      "import type { FC } from 'react';",
+      "",
+      "type Props = {}",
+      "",
+      "export const $1: FC<Props> = () => {",
+      "  return <></>;",
+      "};"
+    ]
+  },
+  "SolidComponent": {
+    "prefix": "solid_component",
+    "body": [
+      "import type { Component } from 'solid-js';",
+      "",
+      "type Props = {}",
+      "",
+      "export const $1: Component<Props> = () => {",
+      "  return <></>;",
+      "};"
+    ]
+  }
+}

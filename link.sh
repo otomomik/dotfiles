@@ -3,10 +3,12 @@
 ln -snfv ~/dotfiles/.zshrc ~/
 ln -snfv ~/dotfiles/.tmux.conf ~/
 
+ln -snfv ~/dotfiles/vsnip ~/.vsnip
+
 if [ ! -d "$HOME/.config" ]; then
   mkdir "$HOME/.config"
 fi
 
-ln -s ~/dotfiles/config/nvim ~/.config/nvim
-ln -s ~/dotfiles/config/wezterm ~/.config/wezterm
+ln -snfv ~/dotfiles/config/nvim ~/.config/nvim
+ln -snfv ~/dotfiles/config/wezterm ~/.config/wezterm
 
