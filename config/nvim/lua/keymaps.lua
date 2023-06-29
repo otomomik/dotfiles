@@ -19,15 +19,15 @@ vim.keymap.set("n", "fb", "<cmd>FzfLua buffers<CR>")
 -- Terminal
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
-  cmd = "lazygit",
-  dir = "git_dir",
-  direction = "float",
-  on_open = function(term)
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-  end,
+	cmd = "lazygit",
+	dir = "git_dir",
+	direction = "float",
+	on_open = function(term)
+		vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+	end,
 })
 function lazygit_toggle()
-  lazygit:toggle()
+	lazygit:toggle()
 end
 
 vim.keymap.set("n", "tf", "<cmd>ToggleTerm direction=float<CR>")

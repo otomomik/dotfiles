@@ -10,11 +10,11 @@ config.color_scheme = "iceberg-dark"
 config.window_background_opacity = 0.9
 
 config.keys = {
-  {
-    key = "N",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.DisableDefaultAssignment,
-  },
+	{
+		key = "N",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 }
 
 return config
