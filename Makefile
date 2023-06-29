@@ -1,15 +1,15 @@
 all: init link
 
 init:
-	bash ./bin/init.sh
+	bash init.sh
 
 link:
-	bash ./bin/link.sh
+	bash link.sh
 
 tmux:
-	bash ./bin/tmux.sh
+	bash tmux.sh
 
 zsh:
-	bash ./bin/zsh.sh
+	bash zsh.sh
 
 chore: tmux zsh
