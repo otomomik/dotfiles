@@ -1,35 +1,19 @@
 {
   "Function": {
     "prefix": "s_function",
-    "body": [
-      "function $1() {",
-      "  return;",
-      "}"
-    ]
+    "body": ["function $1() {", "  return;", "}"]
   },
   "ArrowFunction": {
     "prefix": "s_arrow_function",
-    "body": [
-      "const $1 = () => {",
-      "  return;",
-      "}"
-    ]
+    "body": ["const $1 = () => {", "  return;", "}"]
   },
   "Describe": {
     "prefix": "s_describe",
-    "body": [
-      "describe('$1', () => {",
-      "  ",
-      "});"
-    ]
+    "body": ["describe('$1', () => {", "  ", "});"]
   },
   "It": {
     "prefix": "s_it",
-    "body": [
-      "it('$1', () => {",
-      "  ",
-      "});"
-    ]
+    "body": ["it('$1', () => {", "  ", "});"]
   },
   "ReactFC": {
     "prefix": "s_react_fc",
@@ -53,6 +37,26 @@
       "export const $1: Component<Props> = () => {",
       "  return <></>;",
       "};"
+    ]
+  },
+  "LitComponent": {
+    "prefix": "s_lit_component",
+    "body": [
+      "import { html, css, LitElement } from 'lit'",
+      "import { customElement } from 'lit/decorators.js'",
+      "",
+      "@customElement('$1')",
+      "export class $1 extends LitElement {",
+      "  static styles = css`",
+      "    :host {",
+      "      display: block;",
+      "    }",
+      "  `",
+      "",
+      "  render() {",
+      "    return html`<div></div>`",
+      "  }",
+      "}"
     ]
   }
 }
