@@ -5,10 +5,10 @@ vim.g.mapleader = ","
 vim.keymap.set("n", "<C-S-n>", "<Cmd>bprevious<CR>")
 vim.keymap.set("n", "<C-n>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "<C-l>", "<cmd>BufferLinePick<CR>")
-vim.keymap.set("n", "c", "<cmd>bd<CR>")
+vim.keymap.set("n", "<C-c>", "<cmd>bd<CR>")
 
 -- Fern
-vim.keymap.set("n", "ft", "<cmd>Fern . -drawer -toggle<CR>")
+vim.keymap.set("n", "fo", "<cmd>Fern .<CR>")
 
 -- Fzf
 vim.keymap.set("n", "ff", "<cmd>FzfLua files<CR>")
