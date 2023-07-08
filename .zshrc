@@ -18,7 +18,11 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # cat
-alias cat="bat"
+if [ $(uname) = "Drawin" ]; then
+  alias cat="bat"
+else
+  alias cat="batcat"
+fi
 
 # cd
 alias ..="cd .."
@@ -65,3 +69,6 @@ export PATH=$PATH:$GOPATH/bin
 # workspace
 alias ws='cd ~/workspace'
 
+# wsl
+directory=$(pwd)
+[[ $directory =~ .*mnt.* ]] && cd ~
