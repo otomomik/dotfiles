@@ -14,6 +14,9 @@ if [ "$(uname)" == 'Darwin' ]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 
+  # bat・exaのインストール
+  brew install bat exa
+
   # asdfのインストール
   brew install coreutils curl git
 
@@ -57,6 +60,8 @@ if [ "$(uname)" == 'Darwin' ]; then
   defaults write com.visualstudio.code.oss ApplePressAndHoldEnabled -bool false         # For VS Codium
   defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   # For VS Codium Exploration users
   defaults delete -g ApplePressAndHoldEnabled                                           # If necessary, reset global default
+  defaults write com.apple.Dock autohide-delay -float 60; killall Dock
+  # defaults write com.apple.Dock autohide-delay; killall Dock
 elif [ "$(uname)" == 'Linux' ]; then
   echo 'Linux'
 
@@ -65,6 +70,9 @@ elif [ "$(uname)" == 'Linux' ]; then
   # aptのアップデート
   echo "${password}" | sudo -S apt-get -y update
   sudo apt-get -y upgrade
+
+  # bat・exaのインストール
+  sudo apt -y install bat exa
 
   # tmuxのインストール
   sudo apt -y install tmux

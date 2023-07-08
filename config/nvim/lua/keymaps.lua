@@ -8,7 +8,7 @@ vim.keymap.set("n", "<C-l>", "<cmd>BufferLinePick<CR>")
 vim.keymap.set("n", "<C-c>", "<cmd>bd<CR>")
 
 -- Fern
-vim.keymap.set("n", "fo", "<cmd>Fern .<CR>")
+vim.keymap.set("n", "fo", "<cmd>Fern . -reveal=%<CR>")
 
 -- Fzf
 vim.keymap.set("n", "ff", "<cmd>FzfLua files<CR>")

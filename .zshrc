@@ -17,6 +17,9 @@ source $ZSH/oh-my-zsh.sh
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# cat
+alias cat="bat"
+
 # cd
 alias ..="cd .."
 alias ..1=".."
@@ -27,8 +30,9 @@ alias ..5=".. && .. && .. && .. && .."
 alias ..6=".. && .. && .. && .. && .. && .."
 
 # ls
-alias ll="ls -lG"
-alias la="ls -laG"
+alias ls="exa --icons"
+alias ll="ls -l"
+alias la="ls -la"
 
 # cp
 alias cp="cp -p"
