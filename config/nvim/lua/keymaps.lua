@@ -17,6 +17,12 @@ vim.keymap.set("n", "fd", "<cmd>FzfLua diagnostics_document<CR>")
 vim.keymap.set("n", "fs", "<cmd>FzfLua git_status<CR>")
 vim.keymap.set("n", "fb", "<cmd>FzfLua buffers<CR>")
 
+-- Memo
+local fzfLua = require("fzf-lua")
+vim.keymap.set("n", "mo", "<cmd>Fern ~/memo -reveal=%<CR>")
+vim.keymap.set("n", "mf", "<cmd>lua require('fzf-lua').files({ cwd = \"~/memo\" })<CR>", { silent = true })
+vim.keymap.set("n", "mg", "<cmd>lua require('fzf-lua').live_grep({ cwd = \"~/memo\" })<CR>", { silent = true })
+
 -- Terminal
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({
