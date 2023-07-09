@@ -18,7 +18,7 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # cat
-if [ $(uname) = "Drawin" ]; then
+if [ $(uname) = "Darwin" ]; then
   alias cat="bat"
 else
   alias cat="batcat"
