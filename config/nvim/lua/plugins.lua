@@ -158,22 +158,13 @@ return packer.startup(function(use)
           local opts = {
             capabilities = capabilities,
           }
-          opts.on_attach = function(_, bufnr)
-            local bufopts = { silent = true, buffer = bufnr }
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-            vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", bufopts)
-            vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<CR>", bufopts)
-            vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", bufopts)
-            vim.keymap.set("n", "gt", "<cmd>FzfLua lsp_typedefs<CR>", bufopts)
-            vim.keymap.set("n", "gn", vim.lsp.buf.rename, bufopts)
-            vim.keymap.set("n", "ga", "<cmd>FzfLua lsp_code_actions<CR>", bufopts)
-            vim.keymap.set("n", "ge", vim.diagnostic.open_float, bufopts)
-            vim.keymap.set("n", "gf", vim.lsp.buf.format, bufopts)
-            vim.keymap.set("n", "<Leader>gN", vim.diagnostic.goto_prev, bufopts)
-            vim.keymap.set("n", "<Leader>gn", vim.diagnostic.goto_next, bufopts)
-          end
           nvim_lsp[server_name].setup(opts)
         end,
+      })
+      nvim_lsp.sourcekit.setup({
+        cmd = { "xcrun", "sourcekit-lsp" },
+        filetypes = { "swift" },
+        root_dir = nvim_lsp.util.root_pattern("Package.swift", ".git"),
       })
     end,
   })
@@ -189,6 +180,8 @@ return packer.startup(function(use)
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.beautysh,
+          null_ls.builtins.formatting.swiftformat,
+          null_ls.builtins.formatting.xmlformat,
         },
       })
     end,

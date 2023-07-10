@@ -40,6 +40,9 @@ if [ "$(uname)" == 'Darwin' ]; then
   # goに必要なライブラリのインストール
   brew install coreutils
 
+  # swiftに必要なライブラリのインストール
+  brew install swiftformat
+
   # dockerのインストール
   brew install --cask docker
 
