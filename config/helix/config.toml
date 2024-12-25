@@ -1,0 +1,22 @@
+theme = "kanagawa"
+
+[keys.insert]
+# "C-w" = "copilot_apply_completion"
+
+[keys.normal]
+"C-l" = "jump_view_right"
+"C-h" = "jump_view_left"
+"C-k" = "jump_view_up"
+"C-j" = "jump_view_down"
+
+[editor]
+mouse = false
+# copilot-auto-render = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
