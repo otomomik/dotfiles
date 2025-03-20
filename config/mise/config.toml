@@ -1,0 +1,4 @@
+[tools]
+lazydocker = "latest"
+neovim = "latest"
+node = "latest"

@@ -1,3 +1,8 @@
 raycast
 gh
 tmux/**
+config/*
+!config/helix
+!config/weztrm
+!config/nvim
+!config/mise

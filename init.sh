@@ -2,7 +2,12 @@
 
 # 前提
 # homebrewをインストールしていること
+# zshを使用していること
 
-brew install --cask arc docker wezterm 1password raycast
-brew install wget tmux helix huggingface-cli asdf ollama gh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zdharma-continuum/history-search-multi-word.git ~/.oh-my-zsh/custom/plugins/history-search-multi-word
+
+brew install --cask arc wezterm 1password raycast slack scroll-reverser
+brew install wget tmux gh mise
 wget -O ./tmux/iceberg_minimal.tmux.conf https://raw.githubusercontent.com/gkeep/iceberg-dark/master/.tmux/iceberg_minimal.tmux.conf
