@@ -1,6 +1,7 @@
 raycast
 gh
 tmux/**
+!tmux/.gitkeep
 config/*
 !config/helix
 !config/weztrm

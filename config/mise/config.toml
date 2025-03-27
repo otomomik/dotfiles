@@ -1,4 +1,5 @@
 [tools]
 lazydocker = "latest"
+lazygit = "latest"
 neovim = "latest"
 node = "latest"
