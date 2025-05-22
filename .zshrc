@@ -20,3 +20,5 @@ alias ..5=".. && .. && .. && .. && .."
 alias ..6=".. && .. && .. && .. && .. && .."
 
 eval "$(mise activate zsh)"
+
+export PATH="$HOME/.local/share/mise/shims:$PATH"
