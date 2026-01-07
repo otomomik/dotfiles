@@ -15,4 +15,4 @@ brew install --cask wezterm orbstack
 brew install wget tmux gh mise lazysql ripgrep fd
 wget -O ./tmux/iceberg_minimal.tmux.conf https://raw.githubusercontent.com/gkeep/iceberg-dark/master/.tmux/iceberg_minimal.tmux.conf
 # browser
-rew install --cask arc vivaldi google-chrome
+rew install --cask arc google-chrome

@@ -1,4 +1,5 @@
 [tools]
+dotnet = "latest"
 lazydocker = "latest"
 lazygit = "latest"
 neovim = "latest"
