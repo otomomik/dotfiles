@@ -24,7 +24,7 @@ eval "$(mise activate zsh)"
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/mac-mini-m4/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 # task-architect エージェントの設定
